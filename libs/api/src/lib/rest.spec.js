@@ -142,6 +142,36 @@ describe('rest', () => {
       });
     });
 
+    describe('and request passes a raw body', () => {
+      const expectedUrl = random.word();
+      const expectedBody = { payload: random.word() };
+      const expectedData = random.word();
+      let response;
+      let mock;
+
+      beforeAll(async () => {
+        const token = random.uuid();
+        configureRest({ getToken: async () => Promise.resolve(token) });
+        mock = new MockAdapter(axios);
+        mock
+          .onPost(expectedUrl, expectedBody)
+          .reply((config) => {
+            if (config.headers.Authorization !== `Bearer ${token}`) return [401];
+            return [201, expectedData];
+          });
+
+        response = await post(expectedUrl, expectedBody);
+      });
+
+      afterAll(() => {
+        mock.restore();
+      });
+
+      test('should return the proper response', () => {
+        expect(response).toEqual({ ok: true, data: expectedData, status: 201 });
+      });
+    });
+
     describe('and request is failure', () => {
       const expectedUrl = random.word();
       const expectedBody = random.word();
@@ -184,6 +214,35 @@ describe('rest', () => {
             return [200, expectedData];
           });
         response = await put(expectedUrl, { body: expectedBody });
+      });
+
+      afterAll(() => {
+        mock.restore();
+      });
+
+      test('should return the proper response', () => {
+        expect(response).toEqual({ ok: true, data: expectedData, status: 200 });
+      });
+    });
+
+    describe('and request passes a raw body', () => {
+      const expectedUrl = random.word();
+      const expectedBody = { payload: random.word() };
+      const expectedData = random.word();
+      let response;
+      let mock;
+
+      beforeAll(async () => {
+        const token = random.uuid();
+        configureRest({ getToken: async () => Promise.resolve(token) });
+        mock = new MockAdapter(axios);
+        mock
+          .onPut(expectedUrl, expectedBody)
+          .reply((config) => {
+            if (config.headers.Authorization !== `Bearer ${token}`) return [401];
+            return [200, expectedData];
+          });
+        response = await put(expectedUrl, expectedBody);
       });
 
       afterAll(() => {
