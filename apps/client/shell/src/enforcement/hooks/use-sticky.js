@@ -14,23 +14,38 @@ function useSticky() {
 
     // This function handles the scroll performance issue
     const debounce = (func, wait = 20, immediate = true) => {
-      let timeOut;
-      return () => {
-        let context = this,
-          args = arguments;
+      let timeoutId;
+      const debounced = (...args) => {
         const later = () => {
-          timeOut = null;
-          if (!immediate) func.apply(context, args);
+          timeoutId = null;
+          if (!immediate) {
+            func(...args);
+          }
         };
-        const callNow = immediate && !timeOut;
-        clearTimeout(timeOut);
-        timeOut = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
+        const callNow = immediate && !timeoutId;
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(later, wait);
+        if (callNow) {
+          func(...args);
+        }
       };
+
+      debounced.cancel = () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+      };
+
+      return debounced;
     };
-    window.addEventListener('scroll', debounce(handleScroll));
+
+    const debouncedHandleScroll = debounce(handleScroll);
+    window.addEventListener('scroll', debouncedHandleScroll);
+
     return () => {
-      window.removeEventListener('scroll', () => handleScroll);
+      debouncedHandleScroll.cancel();
+      window.removeEventListener('scroll', debouncedHandleScroll);
     };
   }, []);
 
