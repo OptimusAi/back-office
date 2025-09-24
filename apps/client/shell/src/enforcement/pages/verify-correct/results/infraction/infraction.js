@@ -64,10 +64,6 @@ const Infraction = ({
     infractionRequestStatus,
   ]);
 
-  useEffect(() => {
-    return () => setImages([]);
-  }, []);
-
   const handleLicencePlateUpdate = (licencePlateObj) => {
     const updatedLicencePlateNumber = licencePlateObj.licencePlateNumber;
     const updatedCountrySubdivision =
@@ -97,24 +93,43 @@ const Infraction = ({
   };
 
   useEffect(() => {
-    const getImages = async () => {
-      let images = [];
-      if (activeInfraction.observations.length === 2) {
-        const sortedImages = sortByEntryExit(activeInfraction);
-        images = await getFormattedImages(sortedImages);
-      } else {
-        images = await getFormattedImages(activeInfraction.enforcementPhotos);
-      }
-      setImages(await images);
+    let isMounted = true;
 
-      const plateImage = getPlateImage(activeInfraction, images);
-      if (plateImage) {
-        setLicencePlateImage(plateImage);
-      }
-    };
-    if (activeInfraction !== null) {
+    if (activeInfraction === null) {
+      setImages([]);
+      setLicencePlateImage({});
+    } else {
+      const getImages = async () => {
+        let formattedImages = [];
+        if (activeInfraction.observations.length === 2) {
+          const sortedImages = sortByEntryExit(activeInfraction);
+          formattedImages = await getFormattedImages(sortedImages);
+        } else {
+          formattedImages = await getFormattedImages(
+            activeInfraction.enforcementPhotos
+          );
+        }
+
+        if (!isMounted) {
+          return;
+        }
+
+        setImages(formattedImages);
+
+        const plateImage = getPlateImage(activeInfraction, formattedImages);
+        if (!isMounted) {
+          return;
+        }
+
+        setLicencePlateImage(plateImage || {});
+      };
+
       getImages();
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [activeInfraction]);
 
   return activeInfraction === null ? (
