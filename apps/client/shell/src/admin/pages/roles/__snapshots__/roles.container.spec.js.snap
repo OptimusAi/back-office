@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Roles container should render with given state from Redux store 1`] = `
+<div
+  className="makeStyles-container-1"
+>
+  <div
+    className="makeStyles-container-2"
+  >
+    <h5
+      className="MuiTypography-root makeStyles-rolesTitle-4 MuiTypography-h5"
+    >
+      Roles
+    </h5>
+    <ul
+      className="MuiList-root makeStyles-listContainer-3 MuiList-padding"
+    >
+      <div
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="MuiListItemAvatar-root"
+        >
+          <div
+            className="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="MuiListItemText-root MuiListItemText-multiline"
+        >
+          <span
+            className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            Admin
+          </span>
+          <p
+            className="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          >
+            Access to client admin configuration
+          </p>
+        </div>
+        <span
+          className="MuiTouchRipple-root"
+        />
+      </div>
+      <div
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="MuiListItemAvatar-root"
+        >
+          <div
+            className="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="MuiListItemText-root MuiListItemText-multiline"
+        >
+          <span
+            className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            Enforcement
+          </span>
+          <p
+            className="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          >
+            Access to Enforcement screen
+          </p>
+        </div>
+        <span
+          className="MuiTouchRipple-root"
+        />
+      </div>
+      <div
+        aria-disabled={false}
+        className="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <div
+          className="MuiListItemAvatar-root"
+        >
+          <div
+            className="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+          >
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="MuiListItemText-root MuiListItemText-multiline"
+        >
+          <span
+            className="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            Verification
+          </span>
+          <p
+            className="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+          >
+            Access to Verify & Correct screen
+          </p>
+        </div>
+        <span
+          className="MuiTouchRipple-root"
+        />
+      </div>
+    </ul>
+  </div>
+  <div
+    className="makeStyles-container-5"
+  >
+    <div
+      className="makeStyles-gridToolbar-6"
+    >
+      <h5
+        className="MuiTypography-root makeStyles-noActiveRole-8 MuiTypography-h5"
+      >
+        Admin
+      </h5>
+      <h5
+        className="MuiTypography-root MuiTypography-h5"
+      />
+    </div>
+    <div
+      className="makeStyles-gridContainer-7"
+    >
+      <div
+        aria-colcount={2}
+        aria-multiselectable={false}
+        aria-rowcount={1}
+        className="MuiDataGrid-root MuiDataGrid-root--densityStandard css-r11z79-MuiDataGrid-root"
+        role="grid"
+      >
+        <div
+          className="MuiDataGrid-main css-204u17-MuiDataGrid-main"
+        >
+          <div
+            className="MuiDataGrid-overlay css-18rq0oa-MuiDataGrid-overlay"
+            error={[TypeError: Cannot set property 'scrollLeft' of null]}
+          >
+            An error occurred.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

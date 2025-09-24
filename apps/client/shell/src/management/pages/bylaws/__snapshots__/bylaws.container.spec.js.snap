@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bylaws Container should render with given state from Redux store 1`] = `
+<div
+  className="makeStyles-container-1"
+>
+  <div
+    className="makeStyles-gridToolbar-2"
+  >
+    <h5
+      className="MuiTypography-root MuiTypography-h5"
+    >
+      Bylaws
+    </h5>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall Mui-disabled Mui-disabled"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <span
+          className="MuiButton-startIcon MuiButton-iconSizeSmall"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+            />
+          </svg>
+        </span>
+        Add Bylaw
+      </span>
+    </button>
+  </div>
+  <div
+    className="makeStyles-gridContainer-3"
+  >
+    <div
+      aria-colcount={5}
+      aria-multiselectable={false}
+      aria-rowcount={2}
+      className="MuiDataGrid-root MuiDataGrid-root--densityStandard css-r11z79-MuiDataGrid-root"
+      role="grid"
+    >
+      <div
+        className="MuiDataGrid-main css-204u17-MuiDataGrid-main"
+      >
+        <div
+          className="MuiDataGrid-overlay css-18rq0oa-MuiDataGrid-overlay"
+          error={[TypeError: Cannot set property 'scrollLeft' of null]}
+        >
+          An error occurred.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

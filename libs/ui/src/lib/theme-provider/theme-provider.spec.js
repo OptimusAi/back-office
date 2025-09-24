@@ -1,0 +1,13 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import ThemeProvider from './theme-provider';
+describe('ThemeProvider', () => {
+  it('should render successfully', () => {
+    const { baseElement } = render(
+      <ThemeProvider>
+        <div>xxx</div>
+      </ThemeProvider>
+    );
+    expect(baseElement).toBeTruthy();
+  });
+});

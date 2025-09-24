@@ -1,0 +1,46 @@
+# DO NOT USE THIS PIPELINE. EXPERIMENTAL ONLY. USE APP PIPELINES.
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+  distExists: 'false'
+
+steps:
+- task: Cache@2
+  displayName: 'Cache NPM'
+  inputs:
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    path: $(npm_config_cache)
+    restoreKeys: |
+       npm | "$(Agent.OS)"
+
+- script: npm ci --no-optional
+  displayName: 'Install Packages'
+
+- script: npm run lint
+  displayName: 'Lint'
+  enabled: false
+
+- script: npm run affected:build -- --parallel --configuration=dist --base=origin/main~1
+  displayName: 'Build'
+
+- bash: |
+    if [ -d $(System.DefaultWorkingDirectory)/dist ]; then
+      echo "##vso[task.setVariable variable=distExists]true"
+    fi
+  displayName: 'Check for Builds'
+
+- task: CopyFiles@2
+  displayName: 'Drop Artifacts'
+  condition: eq(variables.distExists, 'true')
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/dist'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
+  condition: eq(variables.distExists, 'true')

@@ -1,0 +1,30 @@
+{
+  "npmScope": "park-plus",
+  "affected": { "defaultBase": "main~1" },
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "ui": { "tags": [] },
+    "client-shell": { "tags": [] },
+    "client-shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client-shell"]
+    },
+    "cpa-shell": { "tags": [] },
+    "cpa-shell-e2e": { "tags": [], "implicitDependencies": ["cpa-shell"] },
+    "api": { "tags": [] },
+    "fake-data": { "tags": [] }
+  }
+}

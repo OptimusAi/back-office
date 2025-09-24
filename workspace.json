@@ -1,0 +1,421 @@
+{
+  "version": 2,
+  "projects": {
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-shell": {
+      "root": "apps/client/shell",
+      "sourceRoot": "apps/client/shell/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/client/shell",
+            "index": "apps/client/shell/src/index.html",
+            "main": "apps/client/shell/src/main.js",
+            "polyfills": "apps/client/shell/src/polyfills.js",
+            "tsConfig": "apps/client/shell/tsconfig.app.json",
+            "assets": [
+              "apps/client/shell/src/web.config",
+              "apps/client/shell/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "cold": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/shell/src/environments/environment.js",
+                  "with": "apps/client/shell/src/environments/environment.cold.js"
+                },
+                {
+                  "replace": "apps/client/shell/src/app/authentication/authority.js",
+                  "with": "apps/client/shell/src/app/authentication/fake-authority.js"
+                },
+                {
+                  "replace": "libs/api/src/lib/api.js",
+                  "with": "libs/api/src/lib/fake-api.js"
+                }
+              ]
+            },
+            "localhost": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/shell/src/environments/environment.js",
+                  "with": "apps/client/shell/src/environments/environment.localhost.js"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/shell/src/environments/environment.js",
+                  "with": "apps/client/shell/src/environments/environment.prod.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "dist": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/shell/src/environments/environment.js",
+                  "with": "apps/client/shell/src/environments/environment.dist.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }      
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "client-shell:build",
+            "port": 4200
+          },
+          "configurations": {
+            "cold": {
+              "buildTarget": "client-shell:build:cold"
+            },
+            "localhost": {
+              "buildTarget": "client-shell:build:localhost"
+            },
+            "production": {
+              "buildTarget": "client-shell:build:production"
+            },
+            "dist": {
+              "buildTarget": "client-shell:build:dist"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/client/shell/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/client/shell"
+          ],
+          "options": {
+            "jestConfig": "apps/client/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-shell-e2e": {
+      "root": "apps/client/shell-e2e",
+      "sourceRoot": "apps/client/shell-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client/shell-e2e/cypress.json",
+            "tsConfig": "apps/client/shell-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-shell:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client-shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/client/shell-e2e/**/*.js"
+            ]
+          }
+        }
+      }
+    },
+    "cpa-shell": {
+      "root": "apps/cpa/shell",
+      "sourceRoot": "apps/cpa/shell/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/cpa/shell",
+            "index": "apps/cpa/shell/src/index.html",
+            "main": "apps/cpa/shell/src/main.js",
+            "polyfills": "apps/cpa/shell/src/polyfills.js",
+            "tsConfig": "apps/cpa/shell/tsconfig.app.json",
+            "assets": [
+              "apps/cpa/shell/src/web.config",
+              "apps/cpa/shell/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "cold": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/cpa/shell/src/environments/environment.js",
+                  "with": "apps/cpa/shell/src/environments/environment.cold.js"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/cpa/shell/src/environments/environment.js",
+                  "with": "apps/cpa/shell/src/environments/environment.prod.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "dist": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/cpa/shell/src/environments/environment.js",
+                  "with": "apps/cpa/shell/src/environments/environment.dist.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "cpa-shell:build",
+            "port": 4201
+          },
+          "configurations": {
+            "cold": {
+              "buildTarget": "cpa-shell:build:cold"
+            },
+            "production": {
+              "buildTarget": "cpa-shell:build:production"
+            },
+            "dist": {
+              "buildTarget": "cpa-shell:build:dist"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cpa/shell/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/cpa/shell"
+          ],
+          "options": {
+            "jestConfig": "apps/cpa/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cpa-shell-e2e": {
+      "root": "apps/cpa/shell-e2e",
+      "sourceRoot": "apps/cpa/shell-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/cpa/shell-e2e/cypress.json",
+            "tsConfig": "apps/cpa/shell-e2e/tsconfig.e2e.json",
+            "devServerTarget": "cpa-shell:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cpa-shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cpa/shell-e2e/**/*.js"
+            ]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "libs/api",
+      "sourceRoot": "libs/api/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/api"
+          ],
+          "options": {
+            "jestConfig": "libs/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "fake-data": {
+      "root": "libs/fake-data",
+      "sourceRoot": "libs/fake-data/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fake-data/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/fake-data"
+          ],
+          "options": {
+            "jestConfig": "libs/fake-data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "babel": true,
+        "js": true
+      },
+      "component": {
+        "style": "none",
+        "js": true,
+        "flat": true
+      },
+      "redux": {
+        "directory": "state",
+        "js": true,
+        "flat": true
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint",
+        "js": true
+      },
+      "storybook-configuration": {
+        "js": true
+      }
+    }
+  },
+  "defaultProject": "client-shell"
+}

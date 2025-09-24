@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@park-plus/ui": ["libs/ui/src/index.js"],
+      "@park-plus/api": ["libs/api/src/index.js"],
+      "@park-plus/fake-data": ["libs/fake-data/src/index.js"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

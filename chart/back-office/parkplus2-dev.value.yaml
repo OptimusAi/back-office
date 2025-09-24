@@ -1,0 +1,80 @@
+# Default values for back-office.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: acrakstwitp25wxaega.azurecr.io/live/parkplus2/back-offices
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "6532"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: apw-aks-twitp25wxaega-ssl-fullbundle2
+    appgw.ingress.kubernetes.io/backend-protocol: http
+    appgw.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: azure/application-gateway
+    cert-manager.io/cluster-issuer: n/a
+  hosts:
+    - host: parkplus2-dev.parkplus.ca
+      paths:
+        - /
+
+azureKeyVault:
+  userAssignedIdentityID: "b347f179-dc42-4c1b-af8f-66a28a8c718e"  #Client ID of Managed Identity aks-wep4hf2pyv7pk-agentpool
+  keyvaultName: "parkplus2-dev-keyvault"
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector:
+  agentpool: npooscope01
+  kubernetes.io/arch: amd64
+  kubernetes.io/os: linux
+
+tolerations: []
+
+affinity: {}
+
+configjs:
+  apiBaseUrl: https://parkplus2-gateway-dev.parkplus.ca/api/
+  appBaseUrl: https://parkplus2-dev.parkplus.ca
+  clientId: eps-client
+  env: dev
+  cpaOauthBaseUrl: https://oauthuat.parkplus.ca
+  production: false

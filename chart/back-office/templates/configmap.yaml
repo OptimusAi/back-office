@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: back-office-app-configmap
+data:
+  config.js: |-
+    window.ENV = {
+{{- range $key, $val := .Values.configjs }}
+{{ $key | indent 6}}: {{ $val | squote }} ,
+{{- end}}
+    };
